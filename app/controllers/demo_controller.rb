@@ -4,17 +4,18 @@ class DemoController < ApplicationController
   
   def index
 	  render('hello')
-  end
+	  end
   
   def hello
-	  render('index')
-  end
+# 	  render('index')
+	  end
   
   def other_hello
 	  redirect_to(:controller => 'demo', :action => 'index')
-  end
+	  end
   
   def lynda
 	  redirect_to("http://lynda.com")
 	  end
+
 end
