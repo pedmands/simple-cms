@@ -11,16 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130821164842) do
+ActiveRecord::Schema.define(version: 20150808105255) do
 
   create_table "admin_users", force: true do |t|
     t.string   "first_name",      limit: 25
     t.string   "last_name",       limit: 50
     t.string   "email",           limit: 100, default: "", null: false
     t.string   "username",        limit: 25
-    t.string   "hashed_password", limit: 40
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
+    t.string   "password_digest"
   end
 
   add_index "admin_users", ["username"], name: "index_admin_users_on_username", using: :btree
@@ -37,9 +37,9 @@ ActiveRecord::Schema.define(version: 20130821164842) do
     t.string   "name"
     t.string   "permalink"
     t.integer  "position"
-    t.boolean  "visible",    default: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.boolean  "visible"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_index "pages", ["permalink"], name: "index_pages_on_permalink", using: :btree
@@ -49,8 +49,8 @@ ActiveRecord::Schema.define(version: 20130821164842) do
     t.integer  "admin_user_id"
     t.integer  "section_id"
     t.string   "summary"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   add_index "section_edits", ["admin_user_id", "section_id"], name: "index_section_edits_on_admin_user_id_and_section_id", using: :btree
@@ -72,6 +72,15 @@ ActiveRecord::Schema.define(version: 20130821164842) do
     t.string   "name"
     t.integer  "position"
     t.boolean  "visible",    default: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  create_table "users", force: true do |t|
+    t.string   "first_name", limit: 25
+    t.string   "last_name",  limit: 50
+    t.string   "email",                 default: "", null: false
+    t.string   "password",   limit: 40
     t.datetime "created_at"
     t.datetime "updated_at"
   end
