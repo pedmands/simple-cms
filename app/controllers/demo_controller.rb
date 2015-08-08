@@ -26,4 +26,11 @@ class DemoController < ApplicationController
 	def escape_output
 	end
 	
+	def make_error
+    # My guesses for the 3 most common errors:
+    #render(:text => "test" # syntax error, unexpected X, expecting Y
+    #render(:text => @something.upcase) # undefined method on nil
+    render(:text => "1" + 1) # can't convert type
+	end
+	
 end
